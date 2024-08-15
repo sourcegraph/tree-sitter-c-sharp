@@ -18,7 +18,7 @@
 //!     }
 //! "#;
 //! let mut parser = Parser::new();
-//! parser.set_language(tree_sitter_c_sharp::language()).expect("Error loading C# grammar");
+//! parser.set_language(&tree_sitter_c_sharp::language()).expect("Error loading C# grammar");
 //! let parsed = parser.parse(code, None);
 //! # let parsed = parsed.unwrap();
 //! # let root = parsed.root_node();
@@ -44,18 +44,18 @@ pub fn language() -> Language {
 }
 
 /// The source of the C# tree-sitter grammar description.
-pub const GRAMMAR: &'static str = include_str!("../../grammar.js");
+pub const GRAMMAR: &str = include_str!("../../grammar.js");
 
 /// The content of the [`node-types.json`][] file for this grammar.
 ///
 /// [`node-types.json`]: https://tree-sitter.github.io/tree-sitter/using-parsers#static-node-types
-pub const NODE_TYPES: &'static str = include_str!("../../src/node-types.json");
+pub const NODE_TYPES: &str = include_str!("../../src/node-types.json");
 
 /// The symbol tagging query for this language.
-pub const TAGGING_QUERY: &'static str = include_str!("../../queries/tags.scm");
+pub const TAGGING_QUERY: &str = include_str!("../../queries/tags.scm");
 
 /// The syntax highlighting query for this language.
-pub const HIGHLIGHT_QUERY: &'static str = include_str!("../../queries/highlights.scm");
+pub const HIGHLIGHT_QUERY: &str = include_str!("../../queries/highlights.scm");
 
 #[cfg(test)]
 mod tests {
@@ -63,7 +63,7 @@ mod tests {
     fn can_load_grammar() {
         let mut parser = tree_sitter::Parser::new();
         parser
-            .set_language(super::language())
+            .set_language(&super::language())
             .expect("Error loading C# grammar");
     }
 }
